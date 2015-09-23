@@ -1,0 +1,13 @@
+{
+    "presentation": [
+        {
+            "id": 1,
+            "name": "Cholecap",
+            "bodyclass": "",
+            "slide": [1,2],
+            "template":["global"],
+            "less":["global"],
+            "js":["jquery"]
+        }
+    ]
+} 

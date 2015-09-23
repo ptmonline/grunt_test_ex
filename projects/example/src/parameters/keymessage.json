@@ -1,0 +1,24 @@
+{
+    "keymessage": [
+        {
+            "id": 1,
+            "product": "Cholecap",
+            "product_id": "a00J00000073D6z",
+            "clm_presentation": "Cholecap",
+            "presentation_version": "01",
+            "display_order": "1",
+            "active": true,
+            "slide_version": "1"
+        },
+        {
+            "id": 2,
+            "product": "Cholecap",
+            "product_id": "a00J00000073D6z",
+            "clm_presentation": "Cholecap",
+            "presentation_version": "01",
+            "display_order": "2",
+            "active": true,
+            "slide_version": "1"
+        }
+    ]
+}

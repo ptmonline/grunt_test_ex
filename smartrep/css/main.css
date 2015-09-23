@@ -1,0 +1,503 @@
+html {
+  margin: 0;
+  padding: 0;
+}
+html body {
+  background: whiteSmoke;
+  font-family: 'Arial';
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+html body .clear {
+  clear: both;
+}
+html body ul {
+  padding-left: 0px !important;
+  margin: 0;
+}
+html body .liverep {
+  overflow: hidden;
+  width: 1024px;
+  height: 768px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+html body .liverep.active {
+  -webkit-transition: opacity 500ms linear;
+  -webkit-transition: z-index 0 linear 600ms;
+  opacity: 1;
+  z-index: 999999999998;
+}
+html body .liverep iframe {
+  background-color: #ffffff;
+  width: 1024px;
+  height: 768px;
+  border: none;
+  overflow: hidden;
+  opacity: 1;
+  transition: all 150ms ease-out 600ms;
+}
+html body .liverep iframe.active {
+  opacity: 0.04;
+}
+html body .liverep .background_init {
+  width: 1024px;
+  height: 768px;
+  top: 0;
+  position: absolute;
+  background-color: #1d2226;
+  background-image: url('../img/klick_background.png');
+  background-size: cover;
+}
+html body .liverep .background_init .smartrep_logo {
+  width: 180px;
+  height: 45px;
+  position: absolute;
+  top: 332px;
+  left: 420px;
+  opacity: 0;
+  background-image: url('../img/smartrep_logo.png');
+  -webkit-filter: blur(5px);
+  -webkit-transition: all 500ms ease-out;
+}
+html body .liverep .background_init .smartrep_logo.active {
+  opacity: 1;
+  -webkit-filter: blur(0px);
+}
+html body .liverep nav.liverep_cmds {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+html body .liverep nav.liverep_cmds .smartrep_title {
+  border-left: 20px solid rgba(120, 182, 216, 0.8);
+  background-color: rgba(19, 23, 25, 0.8);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.9);
+  padding: 0 0 0 21px;
+  text-align: left;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  font-weight: bold;
+  -webkit-transition: all 150ms ease-out;
+}
+html body .liverep nav.liverep_cmds .smartrep_title.general_info {
+  border-left: 20px solid transparent;
+  height: 15px;
+  opacity: 1;
+  padding: 3px 0 3px 21px;
+}
+html body .liverep nav.liverep_cmds .smartrep_title.active {
+  height: 15px;
+  opacity: 1;
+  padding: 3px 0 3px 21px;
+}
+html body .liverep nav.liverep_cmds .smartrep_title .project_and_presentation {
+  font-size: 11px;
+  float: right;
+  margin: 0 20px 0 0;
+}
+html body .liverep nav.liverep_cmds .smartrep_title .project_and_presentation .project {
+  color: rgba(255, 255, 255, 0.4);
+}
+html body .liverep nav.liverep_cmds .smartrep_title .project_and_presentation .presentation {
+  color: rgba(255, 255, 255, 0.8);
+  margin-left: 10px;
+}
+html body .liverep nav.liverep_cmds .smartrep_title .slide_description {
+  color: rgba(255, 255, 255, 0.9);
+  float: left;
+}
+html body .liverep nav.liverep_cmds .smartrep.slide_selector {
+  width: 100%;
+  height: 0px;
+  z-index: 99999999999999;
+  overflow: hidden;
+  opacity: 0;
+  border-top: none;
+  /*-webkit-transition: height 300ms ease-out 300ms, padding 300ms ease-out 300ms, opacity 300ms ease-out 300ms;*/
+  /*
+						menu{
+							background-color: #a0a0a0;
+							box-shadow: 0px 2px 4px rgba(0,0,0,0.3);
+							padding:0;
+							margin:0;
+							position: relative;
+							z-index: 1;
+							height: 35px;
+							.btn{
+								font-size: 11px;
+								border-right: 1px solid #737373;
+								color: #ffffff;
+								float: left;
+								background-color: #a0a0a0;
+								text-transform: uppercase;
+								padding: 11px 15px 10px 15px;
+								background-repeat: no-repeat;
+								background-position: 4px 3px;
+								background-size: 19px;
+								-webkit-transition: all 150ms linear;
+								&.inprogress{
+									color:#ffffff !important;
+									background-color: #6e6e6e !important;
+								}
+								&:first-child{
+								}
+								&:last-child{
+									float:none;
+								}
+							}
+							.btn[data-state=false]{
+								background-color: #f5f5f5;
+								color: #737373 ;
+							}
+						}
+						*/
+
+}
+html body .liverep nav.liverep_cmds .smartrep.slide_selector.active {
+  height: 676px;
+  opacity: 1;
+  border-top: 1px solid #272727;
+}
+html body .liverep nav.liverep_cmds .smartrep.slide_selector .slides .scroll {
+  overflow-y: scroll;
+  height: 676px;
+}
+html body .liverep nav.liverep_cmds .smartrep.slide_selector .slides .scroll .slideslist {
+  padding-left: 0px !important;
+  margin: 0;
+  list-style: none;
+  background-color: rgba(29, 34, 38, 0.8);
+}
+html body .liverep nav.liverep_cmds .smartrep.slide_selector .slides .scroll .slideslist li {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  border-left: 20px solid rgba(19, 23, 25, 0.27);
+}
+html body .liverep nav.liverep_cmds .smartrep.slide_selector .slides .scroll .slideslist li .thumb {
+  background-color: transparent;
+  background-size: cover;
+  float: left;
+  width: 100px;
+  height: 75px;
+  margin: 5px 22px;
+}
+html body .liverep nav.liverep_cmds .smartrep.slide_selector .slides .scroll .slideslist li .thumb .thumb_no_flickering {
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+html body .liverep nav.liverep_cmds .smartrep.slide_selector .slides .scroll .slideslist li .info {
+  float: left;
+}
+html body .liverep nav.liverep_cmds .smartrep.slide_selector .slides .scroll .slideslist li .info .summarize {
+  font-size: 24px;
+  float: left;
+}
+html body .liverep nav.liverep_cmds .smartrep.slide_selector .slides .scroll .slideslist li .info .summarize .slideid {
+  color: #f5f5f5;
+  font-weight: bold;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 9px;
+  width: 32px;
+  height: 32px;
+  padding: 4px;
+  margin: 21px 0;
+  float: left;
+  text-align: center;
+}
+html body .liverep nav.liverep_cmds .smartrep.slide_selector .slides .scroll .slideslist li .info .summarize .slidename {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #ffffff;
+  height: 75px;
+  float: left;
+  white-space: nowrap;
+  width: 700px;
+  padding-right: 31px;
+  line-height: 85px;
+  text-align: left;
+  font-weight: bold;
+  font-size: 20px;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.4);
+}
+html body .liverep nav.liverep_cmds .smartrep.slide_selector .slides .scroll .slideslist li .info .actions {
+  float: left;
+  text-align: center;
+  line-height: 90px;
+  margin: 22px 10px;
+}
+html body .liverep nav.liverep_cmds .smartrep.slide_selector .slides .scroll .slideslist li .info .actions .btn_container {
+  border: 2px dashed rgba(255, 255, 255, 0.8);
+  border-radius: 30px;
+  width: 30px;
+  height: 30px;
+  padding: 2px;
+  float: left;
+  margin: 0 5px;
+}
+html body .liverep nav.liverep_cmds .smartrep.slide_selector .slides .scroll .slideslist li .info .actions .btn_container .btn {
+  color: #f5f5f5;
+  font-weight: bold;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(252, 55, 156, 0.5);
+  border-radius: 9px;
+  width: 31px;
+  height: 31px;
+  padding: 3px;
+  margin: 21px 0;
+  float: left;
+  text-align: center;
+}
+html body .liverep nav.liverep_cmds .smartrep.slide_selector .slides .scroll .slideslist li .info .actions .btn_container .btn:first-child {
+  margin-left: 0 !important;
+}
+html body .liverep nav.liverep_cmds .smartrep.slide_selector .slides .scroll .slideslist li .info .actions .btn_container .btn[data-state=false] {
+  background-color: #f5f5f5;
+  border: 2px solid #ffffff;
+  box-shadow: 1px 1px rgba(0, 0, 0, 0.1);
+  color: #C9C9C9 ;
+}
+html body .liverep nav.liverep_cmds .smartrep.slide_selector .slides .scroll .slideslist li .info .actions .btn_container .btn[data-state=false].deploy {
+  background-color: #F08787;
+  border: 2px solid #FF9696;
+  color: #ffffff ;
+}
+html body .liverep nav.liverep_cmds .smartrep.slide_selector .slides .scroll .smartrep_slides_scrollV {
+  bottom: -25px;
+  position: absolute;
+  right: -40px;
+  top: 85px;
+  width: 5px;
+  z-index: 100;
+}
+html body .liverep nav.liverep_cmds .smartrep.slide_selector .slides .scroll .smartrep_slides_scrollV > div {
+  position: absolute;
+  z-index: 100;
+  width: 100%;
+  background: #f5f5f5;
+  border: 1px solid #6e6e6e;
+  -webkit-background-clip: padding-box;
+  -webkit-box-sizing: border-box;
+}
+html body .liverep nav.liverep_cmds .tree-container {
+  background-color: transparent;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  border-top: 0px solid #272727;
+  -webkit-transition: height 300ms ease-out 300ms, padding 300ms ease-out 300ms, opacity 300ms ease-out 300ms;
+}
+html body .liverep nav.liverep_cmds .tree-container.active {
+  height: 676px;
+  border-top: 1px solid #272727;
+  opacity: 1;
+}
+html body .liverep nav.liverep_cmds .tree-container .node {
+  cursor: pointer;
+}
+html body .liverep nav.liverep_cmds .tree-container .node circle {
+  fill: #E5E1D1 !important;
+  stroke: #52616D;
+  stroke-width: 1.5px;
+}
+html body .liverep nav.liverep_cmds .tree-container .node text {
+  fill: #2C343B;
+  font-size: 10px;
+  font-family: sans-serif;
+}
+html body .liverep nav.liverep_cmds .tree-container .link {
+  fill: none;
+  stroke: #fc379c;
+  stroke-width: 1.5px;
+}
+html body .liverep nav.liverep_cmds .tree-container .templink {
+  fill: none;
+  stroke: red;
+  stroke-width: 3px;
+}
+html body .liverep nav.liverep_cmds .tree-container .ghostCircle.show {
+  display: block;
+}
+html body .liverep nav.liverep_cmds .tree-container .ghostCircle,
+html body .liverep nav.liverep_cmds .tree-container .activeDrag .ghostCircle {
+  display: none;
+}
+html body .liverep nav.liverep_cmds .liverep_console {
+  font-size: 10px;
+  text-align: left;
+  height: 0px;
+  overflow-y: hidden;
+  line-height: 16px;
+  opacity: 0;
+  background-color: rgba(29, 34, 38, 0.8);
+  border-top: 0px solid #272727;
+  -webkit-transition: height 300ms ease-out 300ms, padding 300ms ease-out 300ms, opacity 300ms ease-out 300ms;
+}
+html body .liverep nav.liverep_cmds .liverep_console.active {
+  height: 676px;
+  border-top: 1px solid #272727;
+  overflow-y: scroll;
+  opacity: 1;
+}
+html body .liverep nav.liverep_cmds .liverep_console .title {
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.8);
+  border-left: 20px solid rgba(199, 199, 199, 0.25);
+  background-color: rgba(199, 199, 199, 0.3);
+  width: 130px;
+  float: left;
+  padding: 0 0 0 21px;
+  text-transform: uppercase;
+  -webkit-transition: opacity 300ms ease-out;
+}
+html body .liverep nav.liverep_cmds .liverep_console .title.grunt_task {
+  color: #ffffff;
+  background-color: rgba(43, 194, 85, 0.3);
+  border-left: 20px solid rgba(43, 194, 85, 0.25);
+}
+html body .liverep nav.liverep_cmds .liverep_console .title.grunt_task_error {
+  color: #ffffff;
+  background-color: rgba(194, 43, 43, 0.3);
+  border-left: 20px solid rgba(194, 43, 43, 0.25);
+}
+html body .liverep nav.liverep_cmds .liverep_console .msg {
+  float: left;
+  color: rgba(255, 255, 255, 0.8);
+  -webkit-transition: opacity 300ms ease-out;
+  padding: 0 0 0 15px;
+  width: 815px;
+}
+html body .liverep nav.liverep_cmds .cmds1 {
+  float: left;
+  width: 100%;
+  height: 48px;
+  background-color: rgba(19, 23, 25, 0.8);
+  border-top: 1px solid #272727;
+}
+html body .liverep nav.liverep_cmds .cmds1 .btn_group {
+  float: left;
+  margin: 5px 20px;
+}
+html body .liverep nav.liverep_cmds .cmds1 .btn_group .btn_container {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 9px;
+  width: 32px;
+  height: 32px;
+  padding: 2px;
+  float: left;
+  margin: 0 5px;
+}
+html body .liverep nav.liverep_cmds .cmds1 .btn_group .btn_container .btn {
+  font-size: 11px;
+  width: 28px;
+  height: 28px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  color: #f5f5f5;
+  font-weight: bold;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.4);
+  font-size: 22px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  -webkit-transition: all 300ms linear;
+}
+html body .liverep nav.liverep_cmds .cmds1 .btn_group .btn_container.slide_selector .btn {
+  background-image: url('../img/slide_selector.png');
+}
+html body .liverep nav.liverep_cmds .cmds1 .btn_group .btn_container.refresh .btn {
+  background-image: url('../img/refresh.png');
+}
+html body .liverep nav.liverep_cmds .cmds1 .btn_group .btn_container.position .btn {
+  background-image: url('../img/position.png');
+}
+html body .liverep nav.liverep_cmds .cmds1 .btn_group .btn_container.console .btn {
+  background-image: url('../img/console.png');
+}
+html body .liverep nav.liverep_cmds .cmds1 .btn_group .btn_container.rebuild .btn {
+  background-image: url('../img/rebuild.png');
+}
+html body .liverep nav.liverep_cmds .cmds1 .btn_group .btn_container.devmode .btn {
+  background-image: url('../img/devmode.png');
+}
+html body .liverep nav.liverep_cmds .cmds1 .btn_group .btn_container.hotspot .btn {
+  background-image: url('../img/hotspot.png');
+}
+html body .liverep nav.liverep_cmds .cmds1 .btn_group .btn_container.irep .btn {
+  background-image: url('../img/irep.png');
+}
+html body .liverep nav.liverep_cmds .cmds1 .btn_group .btn_container.iconnect .btn {
+  background-image: url('../img/iconnect.png');
+}
+html body .liverep nav.liverep_cmds .cmds1 .btn_group .btn_container.skura .btn {
+  background-image: url('../img/skura.png');
+}
+html body .liverep nav.liverep_cmds .cmds1 .btn_group .btn_container.tree .btn {
+  background-image: url('../img/tree.png');
+}
+html body .liverep nav.liverep_cmds .cmds1 .btn_group .btn_container.stats .btn {
+  background-image: url('../img/stats.png');
+}
+html body .liverep nav.liverep_cmds .cmds1 .btn_group .btn_container.keymessage .btn {
+  background-image: url('../img/keymessage.png');
+}
+html body .liverep nav.liverep_cmds .cmds1 .btn_group .btn_container.report .btn {
+  background-image: url('../img/report.png');
+}
+html body .liverep nav.liverep_cmds .cmds1 .btn_group .btn_container.slide_id .btn {
+  border: 1px solid transparent;
+}
+html body .liverep nav.liverep_cmds .cmds1 .btn_group .btn_container.active.slide_id {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+html body .liverep nav.liverep_cmds .cmds1 .btn_group.controls .btn_container.active {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+html body .liverep nav.liverep_cmds .cmds1 .btn_group.controls .btn {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+html body .liverep nav.liverep_cmds .cmds1 .btn_group.tools .btn {
+  border-color: rgba(190, 190, 255, 0.3);
+}
+html body .liverep nav.liverep_cmds .cmds1 .btn_group.deployment .btn {
+  border-color: rgba(255, 144, 144, 0.3);
+}
+html body .liverep nav.liverep_cmds .cmds1 .btn_group.graph .btn {
+  border-color: rgba(255, 231, 105, 0.3);
+}
+html body .liverep nav.liverep_cmds .cmds1 .btn_group.version .btn {
+  border-color: rgba(158, 255, 174, 0.3);
+}
+html body .liverep nav.liverep_cmds .cmds1 .klick {
+  background-image: url('../img/logoklick.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  float: right;
+  height: 38px;
+  margin: 8px 10px 0 0;
+  width: 38px;
+}
+html body .black_background {
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+.clear {
+  clear: both;
+}

@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+    <meta charset='utf-8'>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <head>
+        <script src='smartrep/js/constructor/jquery.js'></script>
+        <script src='socket.io/socket.io.js'></script>
+        <script src="smartrep/js/constructor/d3.js" charset="utf-8"></script>
+        <script src="smartrep/js/constructor/dndTree.js" charset="utf-8"></script>
+        <script src='smartrep/js/smartrep.js'></script>
+        <script src='config.js'></script>
+        <link href='smartrep/css/main.css' rel='stylesheet' type='text/css'>
+
+        <link rel="apple-touch-icon" sizes="76x76" href="smartrep/touch-icon-ipad.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="smartrep/touch-icon-iphone-retina.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="smartrep/touch-icon-ipad-retina.png">
+        <script type="text/javascript">
+            //var smartrep_slides_scroll;
+            $(document).ready(function() {
+                //disableIpadScrolling();
+                var socket = io.connect('//'+local_ip_address+':3000');
+                var slides;
+                var _slides = new Slides();
+                var _smartrep;
+                socket.on('slides_init', function() {
+                    var slidesJson = arguments[0].presentation[0].slide;
+                    for(slide in slidesJson){
+                        _slide = new Slide(slidesJson[slide].id, slidesJson[slide].name, slidesJson[slide].description, slidesJson[slide].last_build, slidesJson[slide].last_deploy, slidesJson[slide].devmode, slidesJson[slide].watch, slidesJson[slide].rebuild, slidesJson[slide].deploy, slidesJson[slide].liverep, slidesJson[slide].sizes, slidesJson[slide].presentation_id, slidesJson[slide].project_name);
+                        _slides.set(_slide);
+                    }
+                    _smartrep = new SmartRep(_slides,socket);
+                    _smartrep.construct_html_slides();
+                });
+                socket.on('refresh', function() {
+                    var slidesJson = arguments[0].presentation[0].slide;
+                    _smartrep.refresh_html_slides(slidesJson);
+                });
+                socket.on('error', function() {
+                   _smartrep.grunt_error(arguments[0].grunt_error);
+                });
+                /*
+                setTimeout(function () {
+                    smartrep_slides_scroll = new IScroll($('.smartrep .slides .scroll').get(0), {
+                        scrollbarClass: 'smartrep_slides_scroll',
+                        hideScrollbar:true,
+                        hScroll:false,
+                        bounce:false
+                    });
+                }, 0);
+                */
+            });
+            function disableIpadScrolling(){
+                $(document).on('touchmove', function(e){
+                    e.preventDefault();
+                });
+            }
+
+        </script>
+        <title>smartrep</title>
+    </head>
+    <body>
+        <!--
+        <div class="black_background"></div>
+        <header class="smartrep_header active">
+            <div class="klick"></div>
+            <h1>smart <span class="lightblue">rep</span></h1>
+        </header>
+        -->
+        <section class="liverep">
+            <iframe class="liverep_frame" src="" scrolling="no"></iframe>
+             <section class="background_init">
+                <div class="smartrep_logo"></div>
+            </section>
+            <nav id="liverep_cmds" class="liverep_cmds top_right">
+                <div class="smartrep_title console">Console</div>
+                <section class="smartrep_module liverep_console console"></section>
+                <div class="smartrep_title tree">Tree</div>
+                <section class="smartrep_module tree-container tree" id="tree-container" ></section>
+
+                <div class="smartrep_title slide_selector">Slide selector</div>
+                <section class="smartrep_module smartrep slide_selector">
+                    <div class="clear"></div>
+                    <article class="presentation">
+                        <div class="actions"></div>
+                    </article>
+                    <article class="slides">
+                        <div class="scroll">
+                            <ul class="slideslist"></ul>
+                        </div>
+                    </article>
+                </section>
+
+                <div class="smartrep_title general_info">
+                    <div class="slide_description"></div>
+                    <div class="project_and_presentation">
+                        <span class="project"></span>
+                        <span class="presentation"></span>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="cmds1">
+                    <!-- controls btn -->
+                    <div class="btn_group controls">
+                        <div class="btn_container back slide_selector">
+                            <div class="btn">&nbsp;</div>
+                        </div>
+                        <div class="btn_container refresh">
+                            <div class="btn">&nbsp;</div>
+                        </div>
+                        <div class="btn_container console">
+                            <div class="btn">&nbsp;</div>
+                        </div>
+                        <div class="btn_container position">
+                            <div class="btn">&nbsp;</div>
+                        </div>
+                    </div>
+                    <!-- tools btn -->
+                    <div class="btn_group tools">
+                        <div class="btn_container rebuild">
+                            <div class="btn">&nbsp;</div>
+                        </div>
+                        <div class="btn_container devmode">
+                            <div class="btn">&nbsp;</div>
+                        </div>
+                        <div class="btn_container hotspot">
+                            <div class="btn">&nbsp;</div>
+                        </div>
+                    </div>
+                    <!-- deployment btn -->
+                    <div class="btn_group deployment">
+                        <div class="btn_container irep">
+                            <div class="btn">&nbsp;</div>
+                        </div>
+                        <div class="btn_container iconnect">
+                            <div class="btn">&nbsp;</div>
+                        </div>
+                        <div class="btn_container skura">
+                            <div class="btn">&nbsp;</div>
+                        </div>
+                    </div>
+                    <!-- graph btn -->
+                    <div class="btn_group graph">
+                        <div class="btn_container tree">
+                            <div class="btn">&nbsp;</div>
+                        </div>
+                        <div class="btn_container stats">
+                            <div class="btn">&nbsp;</div>
+                        </div>
+                    </div>
+                    <!-- graph btn -->
+                    <div class="btn_group version">
+                        <div class="btn_container keymessage">
+                            <div class="btn">&nbsp;</div>
+                        </div>
+                        <div class="btn_container report">
+                            <div class="btn">&nbsp;</div>
+                        </div>
+                    </div>
+                    <!-- infos btn -->
+                    <div class="btn_group infos">
+                        <div class="btn_container slide_id">
+                            <div class="btn"></div>
+                        </div>
+                    </div>
+                    <!-- klick logo -->
+                    <div class="klick"></div>
+                </div>
+            </nav>
+        </section>
+    </body>
+</html>

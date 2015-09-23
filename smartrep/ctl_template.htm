@@ -1,0 +1,13 @@
+<%if(typeof(s.keymessage) != "undefined"  && s.keymessage!=false){ %>
+USER=cloader@veeva.partner18.klicksalix
+PASSWORD=klicksalix1234
+FILENAME=<%=name%>_<%=s.name%>.zip
+Name=<%=name%>_<%=s.name%>
+Product_vod__c=<%=s.keymessage[0].product_id%>
+Display_Order_vod__c=<%=s.keymessage[0].display_order%>
+Slide_Version_vod__c=<%=s.keymessage[0].slide_version%>
+Description_vod__c=<%=s.description%>
+<%if(typeof(s.keymessage[0].disable_Actions_vod) != "undefined"  && s.keymessage[0].disable_Actions_vod!=false){ %>
+Disable_Actions_vod__c=<%=s.keymessage[0].disable_Actions_vod%>
+<%} %>
+<%} %>

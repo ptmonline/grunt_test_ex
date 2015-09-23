@@ -1,0 +1,24 @@
+{
+	"slide": [
+		{
+			"id": 1,
+			"name": "page1",
+			"description": "Page1",
+			"keymessage": [1],
+			"template": ["page1"],
+			"template_ajax": [],
+			"js": ["page1"],
+			"less": ["page1"]
+		},
+		{
+			"id": 2,
+			"name": "page2",
+			"description": "Page 2",
+			"keymessage": [2],
+			"template": ["page2"],
+			"template_ajax": [],
+			"js": ["page2"],
+			"less": ["page2"]
+		}	
+	]
+}
